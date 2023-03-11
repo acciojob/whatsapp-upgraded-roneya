@@ -27,9 +27,6 @@ public class WhatsappController {
         //If the mobile number exists in database, throw "User already exists" exception
         //Otherwise, create the user and return "SUCCESS"
 
-        if(!whatsappService.isNewUser(mobile))
-            throw new Exception("User already exists");
-
         return whatsappService.createUser(name, mobile);
     }
 
@@ -51,7 +48,6 @@ public class WhatsappController {
     public int createMessage(String content){
         // The 'i^th' created message has message id 'i'.
         // Return the message id.
-
         return whatsappService.createMessage(content);
     }
 
@@ -75,7 +71,6 @@ public class WhatsappController {
 
     @DeleteMapping("/remove-user")
     public int removeUser(User user) throws Exception{
-        //This is a bonus problem and does not contains any marks
         //A user belongs to exactly one group
         //If user is not found in any group, throw "User not found" exception
         //If user is found in a group and it is the admin, throw "Cannot remove admin" exception
@@ -85,12 +80,12 @@ public class WhatsappController {
         return whatsappService.removeUser(user);
     }
 
-//    @GetMapping("/find-messages")
-//    public String findMessage(Date start, Date end, int K) throws Exception{
-//        //This is a bonus problem and does not contains any marks
-//        // Find the Kth latest message between start and end (excluding start and end)
-//        // If the number of messages between given time is less than K, throw "K is greater than the number of messages" exception
-//
-//        return whatsappService.findMessage(start, end, K);
-//    }
+    @GetMapping("/find-messages")
+    public String findMessage(Date start, Date end, int K) throws Exception{
+        // This is a bonus problem and does not contains any marks
+        // Find the Kth latest message between start and end (excluding start and end)
+        // If the number of messages between given time is less than K, throw "K is greater than the number of messages" exception
+
+        return whatsappService.findMessage(start, end, K);
+    }
 }
